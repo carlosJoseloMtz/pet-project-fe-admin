@@ -1,0 +1,10 @@
+@import "../variables";
+
+.pet-admin-dashboard {
+  .admin-content {
+    padding: 10px;
+    @media (min-width: $md-screen) {
+      padding-left: 95px;
+    }
+  }
+}
