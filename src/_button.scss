@@ -1,0 +1,19 @@
+
+button {
+  background-color: $primary-color;
+  color: $primary-color-text;
+  outline: none;
+  border: none;
+  padding: 10px 0;
+  text-align: center;
+  width: 100%;
+  width: -webkit-fill-available;
+  width: fill-available;
+
+  &:hover {
+    background-color: $primary-color-dark;
+  }
+  &:active {
+    background-color: $primary-color-light;
+  }
+}

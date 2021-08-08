@@ -1,0 +1,20 @@
+$border-color: #8080806e;
+%base-input {
+  border: 1px solid $border-color;
+  border-radius: 5px;
+  outline: none;
+  padding: 10px;
+  display: block;
+
+  &:focus {
+    border-color: darken($border-color, 35%);
+  }
+}
+
+input {
+  @extend %base-input;
+}
+
+textarea {
+  @extend %base-input;
+}

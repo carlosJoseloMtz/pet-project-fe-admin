@@ -28,8 +28,8 @@ const persistForm = ({ name, description, location, isNew = true, adopted }) => 
 
 
 
-const PetForm = ({ uid = null, name='', description = 'thedescription', location, adopted = false }) => {
-  const [sUid, setUid] = useState(uid);
+const PetForm = ({ id = null, name = '', description = '', location, adopted = false }) => {
+  const [sUid, setUid] = useState(id);
   const [sName, setName] = useState(name);
   const [sDescription, setDescription] = useState(description);
   const [sLocation, setLocation] = useState(location);

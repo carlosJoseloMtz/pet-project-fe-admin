@@ -1,0 +1,40 @@
+.admin-content {
+  .filters-section {
+  }
+
+  .search-results {
+    margin: 17px 0;
+    padding: 17px 0;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+
+    table {
+      tr {
+        :hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  form {
+    button {
+      margin: 7px 0;
+    }
+
+    %base-input-form {
+      width: -moz-available; /* WebKit-based browsers will ignore this. */
+      width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+      width: fill-available;
+      margin: 7px 0;
+    }
+
+    input:not([type="checkbox"]) {
+      @extend %base-input-form;
+    }
+
+    textarea {
+      @extend %base-input-form;
+    }
+  }
+}

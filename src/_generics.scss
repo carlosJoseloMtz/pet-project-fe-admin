@@ -5,12 +5,6 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
-.search-results {
-  margin-top: 17px;
-  padding-top: 17px;
-  border-top: 1px solid black;
-}
-
 table {
   width: 100%;
   // remove borders from the table itself
@@ -26,3 +20,6 @@ table {
     text-align: center;
   }
 }
+
+@import "./input";
+@import "./button";
