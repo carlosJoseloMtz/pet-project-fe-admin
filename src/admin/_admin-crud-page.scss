@@ -1,5 +1,23 @@
 .admin-content {
+  .new-register {
+    @media (min-width: $md-screen) {
+      text-align: right;
+      button {
+        width: fit-content;
+        padding: 10px;
+      }
+    }
+  }
+
   .filters-section {
+    .search-input {
+      @media (min-width: $md-screen) {
+        button[type="submit"] {
+          width: fit-content;
+          padding: 10px;
+        }
+      }
+    }
   }
 
   .search-results {
@@ -9,9 +27,11 @@
     border-bottom: 1px solid black;
 
     table {
-      tr {
-        :hover {
-          cursor: pointer;
+      tbody {
+        tr {
+          :hover {
+            cursor: pointer;
+          }
         }
       }
     }

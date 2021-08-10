@@ -4,7 +4,9 @@ const PetAdminMenu = () => {
   return <div className="pet-admin-menu">
     <ul>
       <li>
-        <a href="#">
+        <a href="#"
+          title="Solicitudes de Adopcion"
+        >
           <span className="icon material-icons-outlined">
             assignment
           </span>
@@ -12,7 +14,9 @@ const PetAdminMenu = () => {
         </a>
       </li>
       <li>
-        <a href="#">
+        <a href="#"
+          title="Mascotas"
+        >
           <span className="icon material-icons-outlined">
             pets
           </span>
@@ -20,7 +24,9 @@ const PetAdminMenu = () => {
         </a>
       </li>
       <li>
-        <a href="#">
+        <a href="#"
+          title="Usuarios"
+        >
           <span className="icon material-icons-outlined">
             supervisor_account
           </span>
@@ -28,7 +34,9 @@ const PetAdminMenu = () => {
         </a>
       </li>
       <li>
-        <a href="#">
+        <a href="#"
+          title="Asociacion"
+        >
           <span className="icon material-icons-outlined">
             domain
           </span>
@@ -36,7 +44,9 @@ const PetAdminMenu = () => {
         </a>
       </li>
       <li>
-        <a href="#">
+        <a href="#"
+          title="Locaciones"
+        >
           <span className="icon material-icons-outlined">
             add_location
           </span>

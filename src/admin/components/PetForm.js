@@ -1,6 +1,6 @@
 import * as userService from '../../services/user.service';
 import * as petService from '../../services/pet.service';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const persistForm = ({ name, description, location, isNew = true, adopted }) => {
   const { company } = userService.getCurrentUser();
@@ -28,14 +28,19 @@ const persistForm = ({ name, description, location, isNew = true, adopted }) => 
 
 
 
-const PetForm = ({ id = null, name = '', description = '', location, adopted = false }) => {
-  const [sUid, setUid] = useState(id);
-  const [sName, setName] = useState(name);
-  const [sDescription, setDescription] = useState(description);
-  const [sLocation, setLocation] = useState(location);
-  const [sAdopted, setAdopted] = useState(adopted);
+const PetForm = ({
+  id: initialId,
+  name: initialName,
+  description: initialDescription,
+  location,
+  adopted: initialAdopted }) => {
+  const [sUid, setUid] = useState('');
+  const [sName, setName] = useState('');
+  const [sDescription, setDescription] = useState('');
+  const [sLocation, setLocation] = useState(null);
+  const [sAdopted, setAdopted] = useState('');
 
-  const handleSubmit = (ev) => {
+  const handlePetSubmit = (ev) => {
     ev.preventDefault();
 
     const pet = {
@@ -48,11 +53,51 @@ const PetForm = ({ id = null, name = '', description = '', location, adopted = f
     console.log(pet);
   }
 
-  return <form onSubmit={handleSubmit}>
-    <input name="name" value={sName} onChange={(e) => setName(e.target.value)} />
-    <textarea name="description" value={sDescription} onChange={(e) => setDescription(e.target.value)}></textarea>
-    <button type="submit">Save changes</button>
-  </form>
+  useEffect(() => {
+    setUid(initialId || '');
+    setName(initialName || '');
+    setDescription(initialDescription || '');
+    setAdopted(initialAdopted || '');
+  }, [initialId, initialName, initialDescription, initialAdopted]);
+
+  return <div>
+
+    <form onSubmit={handlePetSubmit} className="pet-info">
+      <h3>Informacion basica</h3>
+      <div>
+        <label htmlFor="id">Codigo</label>
+        <input id="id" name="id" value={sUid || 'No asignado'} disabled placeholder="codigo" />
+      </div>
+      <div>
+        <label htmlFor="name">Nombre</label>
+        <input
+          id="name"
+          name="name"
+          value={sName}
+          required
+          onChange={(e) => setName(e.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="description">Descripcion</label>
+        <textarea
+          id="description"
+          name="description"
+          value={sDescription}
+          required
+          onChange={(e) => setDescription(e.target.value)}></textarea>
+      </div>
+      <button type="submit">Save changes</button>
+    </form>
+
+    <form>
+      <h3>Imagenes</h3>
+    </form>
+
+    <form>
+      <h3>Ubicacion</h3>
+    </form>
+  </div>;
 }
 
 export default PetForm;

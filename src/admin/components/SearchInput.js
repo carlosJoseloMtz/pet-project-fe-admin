@@ -9,7 +9,7 @@ const SearchInput = ({ onSearch, children }) => {
     onSearch(ev.target);
   }
 
-  return <div>
+  return <div className="search-input">
     <form onSubmit={handleSubmit}>
       <input
         placeholder="busqueda"
