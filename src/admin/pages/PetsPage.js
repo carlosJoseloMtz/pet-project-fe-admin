@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { Modal } from 'react-responsive-modal';
+
 import PetForm from '../components/PetForm';
 import ResponsiveContainer from '../components/ResponsiveContainer';
 import SearchInput from '../components/SearchInput';
@@ -8,6 +10,10 @@ import './_pets-page.scss';
 const PetsPage = () => {
   const [pets, setPets] = useState([]);
   const [selectedPet, setSelectedPet] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleOpenModal = () => setModalOpen(true);
+  const handleCloseModal = () => setModalOpen(false);
 
   useEffect(async () => {
     const fetchCompanyPets = async () => {
@@ -16,21 +22,19 @@ const PetsPage = () => {
         name: "Renata",
         description: "Border collie de aproximadamente 2 anios. Es muy juguetona, le encanta esta corriendo todo el tiempo",
         adopted: false,
-        location: {
-          longitude: 1.00,
-          latitude: 1.00,
-          street: "algun lugar sin numero"
-        }
+        size: 'md',
+        sex: 'f',
+        species: 'dog',
+        location: "somewhere over the rainbow"
       }, {
         id: "random-id-11",
         name: "Renata2",
         description: "222222Border collie de aproximadamente 2 anios. Es muy juguetona, le encanta esta corriendo todo el tiempo",
         adopted: false,
-        location: {
-          longitude: 2.00,
-          latitude: 2.00,
-          street: "22222algun lugar sin numero"
-        }
+        size: 'md',
+        sex: 'f',
+        species: 'dog',
+        location: null
       }];
     }
 
@@ -50,6 +54,7 @@ const PetsPage = () => {
         className="new-register"
         onClick={() => {
           setSelectedPet({});
+          handleOpenModal();
         }}>
         Registrar nueva mascota
       </button>
@@ -67,8 +72,7 @@ const PetsPage = () => {
           });
 
           setSelectedPet(null);
-
-          console.log(obj);
+          handleCloseModal();
         }}
       >
         <div>
@@ -97,6 +101,7 @@ const PetsPage = () => {
                   key={pet.id}
                   onClick={() => {
                     setSelectedPet({ ...pet });
+                    handleOpenModal();
                   }}
                 >
                   <td>{pet.id}</td>
@@ -111,11 +116,12 @@ const PetsPage = () => {
       </ResponsiveContainer>
     </div>
     {
-      selectedPet &&
-      <PetForm {...selectedPet} />
-    }
-    {
-      selectedPet && selectedPet.id
+      <Modal
+        open={modalOpen}
+        onClose={handleCloseModal}
+        center>
+        <PetForm {...selectedPet} />
+      </Modal>
     }
   </div>;
 };

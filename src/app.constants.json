@@ -1,0 +1,19 @@
+{
+  "petAttributes": {
+    "sizes": {
+      "xsm": "mini toy",
+      "sm": "pequeno",
+      "md": "mediano",
+      "lg": "grande",
+      "xlg": "extra grande"
+    },
+    "sex": {
+      "f": "female",
+      "m": "male"
+    },
+    "species": {
+      "dog": "Perro",
+      "cat": "Gato"
+    }
+  }
+}

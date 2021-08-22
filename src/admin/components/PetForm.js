@@ -1,6 +1,8 @@
 import * as userService from '../../services/user.service';
 import * as petService from '../../services/pet.service';
 import { useEffect, useState } from 'react';
+import { petAttributes } from '../../app.constants.json';
+import EnumeratorSelector from './EnumeratorSelector';
 
 const persistForm = ({ name, description, location, isNew = true, adopted }) => {
   const { company } = userService.getCurrentUser();
@@ -32,12 +34,19 @@ const PetForm = ({
   id: initialId,
   name: initialName,
   description: initialDescription,
-  location,
-  adopted: initialAdopted }) => {
+  location: initialLocation,
+  adopted: initialAdopted,
+  species: initialSpecies,
+  sex: initialSex,
+  size: initialSize
+}) => {
   const [sUid, setUid] = useState('');
   const [sName, setName] = useState('');
   const [sDescription, setDescription] = useState('');
-  const [sLocation, setLocation] = useState(null);
+  const [sLocation, setLocation] = useState('');
+  const [sSize, setSize] = useState('');
+  const [sSex, setSex] = useState('');
+  const [sSpecies, setSpecies] = useState('');
   const [sAdopted, setAdopted] = useState('');
 
   const handlePetSubmit = (ev) => {
@@ -47,18 +56,36 @@ const PetForm = ({
       name: sName,
       description: sDescription,
       location: sLocation,
-      adopted: sAdopted
+      adopted: sAdopted,
+      sex: sSex,
+      size: sSize,
+      species: sSpecies
     };
 
     console.log(pet);
   }
+
+  const boundedAttributes = [
+    initialId,
+    initialName,
+    initialDescription,
+    initialAdopted,
+    initialLocation,
+    initialSpecies,
+    initialSize,
+    initialSex
+  ];
 
   useEffect(() => {
     setUid(initialId || '');
     setName(initialName || '');
     setDescription(initialDescription || '');
     setAdopted(initialAdopted || '');
-  }, [initialId, initialName, initialDescription, initialAdopted]);
+    setLocation(initialLocation || '');
+    setSpecies(initialSpecies || '');
+    setSize(initialSize || '');
+    setSex(initialSex || '');
+  }, boundedAttributes);
 
   return <div>
 
@@ -79,6 +106,39 @@ const PetForm = ({
         />
       </div>
       <div>
+        <EnumeratorSelector
+          label="Tamano"
+          id="size"
+          name="size"
+          required
+          selectOneMsg="Selecciona un tamano"
+          options={petAttributes.sizes}
+          value={sSize}
+          onChange={(e) => setSize(e.target.value)}
+        />
+      </div>
+      <div>
+        <EnumeratorSelector
+          label="Tipo de mascota"
+          id="specie"
+          name="specie"
+          required
+          selectOneMsg="Selecciona una especie"
+          options={petAttributes.species}
+          value={sSpecies}
+          onChange={(e) => setSpecies(e.target.value)}
+        />
+      </div>
+      <div>
+        <lable htmlFor="location">Locacion</lable>
+        <input
+          id="locaiton"
+          name="location"
+          value={sLocation}
+          onChange={e => setLocation(e.target.value)}
+        />
+      </div>
+      <div>
         <label htmlFor="description">Descripcion</label>
         <textarea
           id="description"
@@ -92,10 +152,6 @@ const PetForm = ({
 
     <form>
       <h3>Imagenes</h3>
-    </form>
-
-    <form>
-      <h3>Ubicacion</h3>
     </form>
   </div>;
 }

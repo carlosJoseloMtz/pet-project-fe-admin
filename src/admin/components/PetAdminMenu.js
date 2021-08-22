@@ -43,16 +43,6 @@ const PetAdminMenu = () => {
           <span className="description">Asociacion</span>
         </a>
       </li>
-      <li>
-        <a href="#"
-          title="Locaciones"
-        >
-          <span className="icon material-icons-outlined">
-            add_location
-          </span>
-          <span className="description">Locaciones</span>
-        </a>
-      </li>
     </ul>
   </div>
 }

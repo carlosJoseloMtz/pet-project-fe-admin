@@ -1,5 +1,5 @@
 
-button {
+button:not(.react-responsive-modal-closeButton) {
   background-color: $primary-color;
   color: $primary-color-text;
   outline: none;
