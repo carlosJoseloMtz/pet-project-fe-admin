@@ -1,49 +1,63 @@
 import './_pet-admin-menu.scss';
+import ReactTooltip from "react-tooltip";
+
 
 const PetAdminMenu = () => {
   return <div className="pet-admin-menu">
     <ul>
       <li>
         <a href="#"
-          title="Solicitudes de Adopcion"
+          data-for="the-tooltip"
+          data-tip="Solicitudes de Adopcion"
+          data-iscapture="true"
         >
           <span className="icon material-icons-outlined">
             assignment
           </span>
-          <span className="description">Solicitudes de adopcion</span>
         </a>
       </li>
       <li>
         <a href="#"
-          title="Mascotas"
+          data-for="the-tooltip"
+          data-tip="Mascotas"
+          data-iscapture="true"
         >
           <span className="icon material-icons-outlined">
             pets
           </span>
-          <span className="description">Mascotas</span>
         </a>
       </li>
       <li>
         <a href="#"
-          title="Usuarios"
+          data-for="the-tooltip"
+          data-tip="Usuarios"
+          data-iscapture="true"
         >
           <span className="icon material-icons-outlined">
             supervisor_account
           </span>
-          <span className="description">Usuarios</span>
         </a>
       </li>
       <li>
         <a href="#"
-          title="Asociacion"
+          data-for="the-tooltip"
+          data-tip="Asociacion"
+          data-iscapture="true"
         >
           <span className="icon material-icons-outlined">
             domain
           </span>
-          <span className="description">Asociacion</span>
         </a>
       </li>
     </ul>
+
+    <ReactTooltip
+      id="the-tooltip"
+      place="right"
+      type="dark"
+      effect="float"
+      multiline={true}
+    />
   </div>
 }
 

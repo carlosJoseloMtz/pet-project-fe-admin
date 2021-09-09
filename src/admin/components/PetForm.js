@@ -3,29 +3,24 @@ import * as petService from '../../services/pet.service';
 import { useEffect, useState } from 'react';
 import { petAttributes } from '../../app.constants.json';
 import EnumeratorSelector from './EnumeratorSelector';
+import './_pet-form.scss';
 
-const persistForm = ({ name, description, location, isNew = true, adopted }) => {
+const persistForm = ({ pet, isNew = true }) => {
   const { company } = userService.getCurrentUser();
 
-  const pet = {
-    name, description, location, company
-  };
-
-  const callWs = async (pet) => {
-
+  const callWs = (pet) => {
     // new record
     if (isNew) {
-      petService.createPet(pet);
+      return petService.createPet(pet);
     }
 
     // existing record
     if (!isNew) {
-      pet.adopted = adopted;
-      petService.updatePet(pet);
+      return petService.updatePet(pet);
     }
   }
 
-  callWs();
+  callWs(pet);
 }
 
 
@@ -38,7 +33,8 @@ const PetForm = ({
   adopted: initialAdopted,
   species: initialSpecies,
   sex: initialSex,
-  size: initialSize
+  size: initialSize,
+  pictures: initialPictures
 }) => {
   const [sUid, setUid] = useState('');
   const [sName, setName] = useState('');
@@ -48,6 +44,7 @@ const PetForm = ({
   const [sSex, setSex] = useState('');
   const [sSpecies, setSpecies] = useState('');
   const [sAdopted, setAdopted] = useState('');
+  const [sPictures, setPictures] = useState(null);
 
   const handlePetSubmit = (ev) => {
     ev.preventDefault();
@@ -59,10 +56,9 @@ const PetForm = ({
       adopted: sAdopted,
       sex: sSex,
       size: sSize,
-      species: sSpecies
+      species: sSpecies,
+      pictures: sPictures
     };
-
-    console.log(pet);
   }
 
   const boundedAttributes = [
@@ -73,7 +69,8 @@ const PetForm = ({
     initialLocation,
     initialSpecies,
     initialSize,
-    initialSex
+    initialSex,
+    initialPictures
   ];
 
   useEffect(() => {
@@ -85,9 +82,10 @@ const PetForm = ({
     setSpecies(initialSpecies || '');
     setSize(initialSize || '');
     setSex(initialSex || '');
+    setPictures(initialPictures || null);
   }, boundedAttributes);
 
-  return <div>
+  return <div className="pet-form">
 
     <form onSubmit={handlePetSubmit} className="pet-info">
       <h3>Informacion basica</h3>
@@ -147,11 +145,13 @@ const PetForm = ({
           required
           onChange={(e) => setDescription(e.target.value)}></textarea>
       </div>
+      <label htmlFor="pictures">Imagenes</label>
+      <input
+        id="pictures"
+        name="pictures"
+        onChange={(e) => setPictures(e.target.files[0])}
+        type="file" />
       <button type="submit">Save changes</button>
-    </form>
-
-    <form>
-      <h3>Imagenes</h3>
     </form>
   </div>;
 }

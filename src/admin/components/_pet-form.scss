@@ -1,0 +1,10 @@
+@import "../../variables";
+
+.pet-form {
+  width: 90%;
+  margin: 0 auto;
+
+  @media (min-width: $sm-screen) {
+    width: 80%;
+  }
+}

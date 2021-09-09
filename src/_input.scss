@@ -18,3 +18,15 @@ input {
 textarea {
   @extend %base-input;
 }
+
+form {
+  input:not([type="checkbox"]) {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  textarea {
+    width: 100%;
+    margin: 5px 0;
+  }
+}
